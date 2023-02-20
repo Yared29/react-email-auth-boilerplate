@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const LogIn = () => {
+const LogIn = () => {
   return (
     <div className='container'>
       <h1>Login into your account</h1>
@@ -19,8 +19,10 @@ export const LogIn = () => {
           name='password'
           placeholder='Your password..'
         />
-        <button>Register</button>
+        <button>Login</button>
       </div>
     </div>
   );
 };
+
+export default Register;

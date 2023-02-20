@@ -22,6 +22,9 @@
   padding: 10px;
 }
 
+label {
+  align-self: flex-start;
+}
 input {
   padding: 15px;
   margin: 5px 0px 5px 0px;  

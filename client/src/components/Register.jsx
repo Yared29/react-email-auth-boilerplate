@@ -26,7 +26,7 @@ const Register = () => {
           name='password'
           placeholder='Your password..'
         />
-        <button>Login</button>
+        <button>Register</button>
       </div>
     </div>
   );
