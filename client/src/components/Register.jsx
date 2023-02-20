@@ -5,25 +5,32 @@ const Register = () => {
     <div className='container'>
       <h1>Create a new account</h1>
       <div className='form-container'>
-        <label for='fullname'>Full Name</label>
+        <label htmlFor='fullname'>Full Name</label>
         <input
           type='text'
           id='fullname'
           name='fullname'
           placeholder='Your fullname..'
         />
-        <label for='email'>Email</label>
+        <label htmlFor='email'>Email</label>
         <input
           type='email'
           id='email'
           name='email'
           placeholder='Your email..'
         />
-        <label for='password'>Password</label>
+        <label htmlFor='password'>Password</label>
         <input
           type='text'
           id='password'
           name='password'
+          placeholder='Your password..'
+        />
+        <label htmlFor='password'>Retype Password</label>
+        <input
+          type='text'
+          id='retypePassword'
+          name='retypePassword'
           placeholder='Your password..'
         />
         <button>Register</button>

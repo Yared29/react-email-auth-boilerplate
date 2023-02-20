@@ -1,7 +1,5 @@
 import './App.css';
-import LogIn from './components/LogIn';
-import Register from './components/Register';
-
+import Register from './components/Register.jsx';
 function App() {
   return (
     <div className='App'>
