@@ -24,7 +24,7 @@ const LogIn = () => {
       .then(async (response) => {
         localStorage.setItem('user', JSON.stringify(response.data));
         setIsLoading(false);
-        navigate('/chat');
+        navigate('/home');
       })
       .catch((error) => {
         if (error.response) {

@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
+var crypto = require('crypto');
 const User = require('../models/userModel.js');
 const generateToken = require('../utils/generateToken.js');
 const nodemailerConfig = require('../config/nodemailerConfig');
@@ -32,7 +32,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, email, password, retypePassword } = req.body;
-  const token = jwt.sign({ email: email }, process.env.NODEMAILER_SECRET);
   const userExists = await User.findOne({ email });
   const errors = {};
 
@@ -40,7 +39,6 @@ const registerUser = asyncHandler(async (req, res) => {
     errors.email = 'User with this email already exists';
   }
 
-  // TODO:Fix validation, put it in separate file
   if (!fullname) {
     errors.fullname = 'Fullname is required';
   }
@@ -68,9 +66,14 @@ const registerUser = asyncHandler(async (req, res) => {
     fullname,
     email,
     password,
-    confirmationCode: token,
   });
+  const confirmationCode =
+    crypto.randomBytes(5).toString('hex') +
+    user._id.toString() +
+    crypto.randomBytes(5).toString('hex');
   if (user) {
+    user.confirmationCode = confirmationCode;
+    await user.save();
     nodemailerConfig.sendConfirmationEmail(
       user.fullname,
       user.email,
@@ -95,13 +98,13 @@ const resendVerificationEmail = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    const token = jwt.sign(
-      { email: user.email },
-      process.env.NODEMAILER_SECRET
-    );
+    const confirmationCode =
+      crypto.randomBytes(5).toString('hex') +
+      user._id.toString() +
+      crypto.randomBytes(5).toString('hex');
 
     if (user.status != 'Active') {
-      user.confirmationCode = token;
+      user.confirmationCode = confirmationCode;
       await user.save();
 
       if (user) {

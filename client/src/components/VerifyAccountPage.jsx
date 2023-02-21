@@ -47,7 +47,7 @@ const VerifyAccountPage = () => {
     <div>
       {isConfirmationLoading ? (
         <div>
-          <Loader />
+          <div>Loading </div>
           <div>Confirming account ...</div>
         </div>
       ) : (
