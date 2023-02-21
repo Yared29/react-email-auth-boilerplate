@@ -20,7 +20,7 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
       html: `<h1>Email Confirmation</h1>
         <h2>Hello ${name}</h2>
         <p>Registration successful. Please confirm your email by clicking on the following link</p>
-        <a href=http://localhost:3000/user/confirm/${confirmationCode}> Click here</a>
+        <a href=http://127.0.0.1:5173/user/confirm/${confirmationCode}> Click here</a>
         </div>`,
     })
     .catch((err) => console.log(err));

@@ -4,7 +4,7 @@ var bcrypt = require('bcryptjs');
 const User = require('../models/userModel.js');
 const generateToken = require('../utils/generateToken.js');
 const nodemailerConfig = require('../config/nodemailerConfig');
-const { isEmpty } = require('../validations/isEmpty.js');
+const { default: isEmpty } = require('../validations/isEmpty.js');
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -71,7 +71,6 @@ const registerUser = asyncHandler(async (req, res) => {
     confirmationCode: token,
   });
   if (user) {
-    //TODO: Uncomment this
     nodemailerConfig.sendConfirmationEmail(
       user.fullname,
       user.email,
