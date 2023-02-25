@@ -11,29 +11,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: rgb(243, 243, 243);
 }
+ 
 
+/* Form :: START */
 .form-container {
-  display: flex;
   min-width: 300px;
   max-width: 300px;
-  flex-direction: column; 
-  margin: 0px;
-  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
 }
 
 h1 {
-  margin: 2px;
-  padding: 2px;
-}
-label {
+  padding: 0px;
+  margin: 0px 0px 10px 0px ;
+  text-align: left;
   align-self: flex-start;
 }
-input {
-  padding: 15px;
-  margin: 5px 0px 0px 0px;  
-}
-
 .form-error-text {
   font-size: 15px;
   color: rgb(246, 90, 90);
@@ -42,13 +39,25 @@ input {
   margin: 2px;
 }
 
+label {
+  align-self: flex-start;
+}
+
+input {
+  padding: 15px;
+  margin: 10px 0px 15px 0px;
+  border: 2px solid rgb(211, 211, 211);
+  border-radius: 15px;
+  background-color: rgb(0, 0, 0);
+}
+
 ::placeholder {
   color: white;
   opacity: 0.6;
 }
 
 :-ms-input-placeholder {
-  color:white;
+  color: white;
   opacity: 0.6;
 }
 
@@ -59,4 +68,38 @@ button {
   margin-bottom: 20px;
   align-self: center;
   cursor: pointer;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(73, 70, 70);
 }
+
+button:hover {
+  border-radius: 10px;
+    border: 2px solid rgb(177, 136, 136);
+}
+.text-error {
+  background-color: rgb(240, 80, 80);
+  margin-top: 2px;
+  margin-bottom: 5px;
+  padding: 2px;
+  border-radius: 10px;
+
+}
+.text-success {
+  background-color: rgb(15, 108, 35);
+  margin-top: 2px;
+  margin-bottom: 5px;
+  padding: 4px;
+  border-radius: 10px;
+
+}
+.text-normal {
+  background-color: rgb(142, 142, 142);
+  margin-top: 2px;
+  margin-bottom: 5px;
+  padding: 2px;
+  border-radius: 10px;
+
+}
+/* Form :: END */

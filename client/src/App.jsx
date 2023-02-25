@@ -31,6 +31,16 @@ function App() {
           path='/user/confirm/:confirmationCode'
           element={<VerifyAccountPage />}
         />
+
+        <Route
+          path='*'
+          element={
+            <Navigate
+              to='/login'
+              replace
+            />
+          }
+        />
       </Routes>
     </Router>
   );

@@ -107,50 +107,49 @@ const LogIn = () => {
 
   return (
     <div className='container'>
-      <h1>Login into your account</h1>
-      {!isEmpty(loginError) ? (
-        <div className='my-4 mx-2 p-2 text-base  bg-red-300'>
-          <div>{loginError.message}</div>
-          {loginError.statusCode === 403 ? (
-            <div>
-              <div className='inline-block align-baseline font-bold text-sm'>
-                Didn't get email verification?{' '}
-                <button
-                  className=' text-blue-500 hover:text-blue-800 cursor-pointer'
-                  onClick={handleResendVerification}
-                >
-                  Resend
-                </button>
-              </div>
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
-      ) : (
-        <></>
-      )}
-      {!isEmpty(verificationSentResponse) ? (
-        <div
-          className={`  ${
-            verificationSentResponse.statusCode === 200 ||
-            verificationSentResponse.statusCode === 202
-              ? 'text-success'
-              : verificationSentResponse.statusCode === 201
-              ? 'text-normal'
-              : 'text-error'
-          }`}
-        >
-          <div>{verificationSentResponse.message}</div>
-        </div>
-      ) : (
-        <></>
-      )}
-
       <form
         className='form-container'
         onSubmit={formik.handleSubmit}
       >
+        <h1>Login</h1>
+        {!isEmpty(loginError) ? (
+          <div className='text-error'>
+            <div>{loginError.message}</div>
+            {loginError.statusCode === 403 ? (
+              <div>
+                <div className=''>
+                  Didn't get email verification?{' '}
+                  <button
+                    className=''
+                    onClick={handleResendVerification}
+                  >
+                    Resend
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+        ) : (
+          <></>
+        )}
+        {!isEmpty(verificationSentResponse) ? (
+          <div
+            className={
+              verificationSentResponse.statusCode === 200 ||
+              verificationSentResponse.statusCode === 202
+                ? 'text-success'
+                : verificationSentResponse.statusCode === 201
+                ? 'text-normal'
+                : 'text-error'
+            }
+          >
+            <div>{verificationSentResponse.message}</div>
+          </div>
+        ) : (
+          <></>
+        )}
         <label htmlFor='email'>Email</label>
         <input
           type='email'

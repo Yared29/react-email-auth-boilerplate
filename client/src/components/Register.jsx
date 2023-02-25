@@ -75,18 +75,18 @@ const Register = () => {
 
   return (
     <div className='container'>
-      <h1>Create a new account</h1>
-      {verificationSent ? (
-        <div className='verfification-sent-text'>
-          Verification code sent successfully to your email.
-        </div>
-      ) : (
-        <></>
-      )}
       <form
         className='form-container'
         onSubmit={formik.handleSubmit}
       >
+        <h1>Register</h1>
+        {verificationSent ? (
+          <div className='text-success'>
+            Verification code sent successfully to your email.
+          </div>
+        ) : (
+          <></>
+        )}
         <label htmlFor='fullname'>Full Name</label>
         <input
           type='text'
