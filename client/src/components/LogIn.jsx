@@ -74,11 +74,11 @@ const LogIn = () => {
       .post(`${BASE_URL}/user/verify/resend`, userData)
       .then(async (response) => {
         // await localStorage.setItem('user', JSON.stringify(response.data));
-        localStorage.setItem('user', JSON.stringify(response.data));
-        console.log(response);
+        if (response.data.status == 'active') {
+          localStorage.setItem('user', JSON.stringify(response.data));
+        }
         setIsLoading(false);
         setLoginError({});
-        navigate('/home');
       })
       .catch((error) => {
         if (error.response) {
@@ -111,18 +111,18 @@ const LogIn = () => {
       >
         <h1>Login</h1>
         {!isEmpty(loginError) ? (
-          <div className='text-error'>
+          <div className='text-normal'>
             <div>{loginError.message}</div>
             {loginError.statusCode === 403 ? (
               <div>
                 <div className=''>
                   Didn't get email verification?{' '}
-                  <button
-                    className=''
+                  <div
+                    className='toggle-button'
                     onClick={handleResendVerification}
                   >
                     Resend
-                  </button>
+                  </div>
                 </div>
               </div>
             ) : (

@@ -26,7 +26,6 @@ const Register = () => {
         console.log(response);
         setIsLoading(false);
         setVerificationSent(true);
-        formik.resetForm();
       })
       .catch((error) => {
         if (error.response) {

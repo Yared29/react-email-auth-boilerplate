@@ -15,7 +15,7 @@ const { protect } = require('../middleware/authMiddleware.js');
 router.post('/register', registerUser);
 
 // @desc    Verify user using confirmation code from email
-// @route   POST /api/user/verifyUser/:confirmationCode
+// @route   GET /api/user/verifyUser/:confirmationCode
 // @acess   Public
 router.get('/verifyUser/:confirmationCode', verifyUser);
 
