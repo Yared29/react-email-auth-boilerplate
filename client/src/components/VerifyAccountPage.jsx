@@ -44,14 +44,16 @@ const VerifyAccountPage = () => {
       });
   }, []);
   return (
-    <div>
+    <div className='activate-container'>
       {isConfirmationLoading ? (
-        <div>
-          <div>Loading </div>
+        <div className='activate-content'>
+          <div>
+            <div class='lds-dual-ring'></div>
+          </div>
           <div>Confirming account ...</div>
         </div>
       ) : (
-        <div>
+        <div className='activate-content'>
           <div>Account Verification</div>
 
           {!isEmpty(verificationSentResponse) ? (
@@ -64,6 +66,10 @@ const VerifyAccountPage = () => {
                   ? 'text-normal'
                   : 'text-error'
               }`}
+              style={{
+                padding: '10px',
+                margin: '10px',
+              }}
             >
               <div>{verificationSentResponse.message}</div>
             </div>
@@ -74,9 +80,12 @@ const VerifyAccountPage = () => {
           verificationSentResponse.statusCode === 201 ||
           verificationSentResponse.statusCode === 202 ? (
             <div>
-              <div>
-                <Link to='/login'>Go to Sign In</Link>
-              </div>
+              <Link
+                to='/login'
+                className='toggle-button'
+              >
+                Go to Sign In
+              </Link>
             </div>
           ) : (
             <></>

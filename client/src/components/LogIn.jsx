@@ -74,13 +74,11 @@ const LogIn = () => {
       .post(`${BASE_URL}/user/verify/resend`, userData)
       .then(async (response) => {
         // await localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem('user', JSON.stringify(response.data));
         console.log(response);
         setIsLoading(false);
-        setVerificationSentResponse({
-          message: response.data.message,
-          statusCode: response.status,
-        });
         setLoginError({});
+        navigate('/home');
       })
       .catch((error) => {
         if (error.response) {
@@ -150,43 +148,47 @@ const LogIn = () => {
         ) : (
           <></>
         )}
-        <label htmlFor='email'>Email</label>
-        <input
-          type='email'
-          id='email'
-          name='email'
-          placeholder='Your email..'
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        {formik.errors.email && formik.touched.email && (
-          <p className='form-error-text'>{formik.errors.email}</p>
-        )}
-        <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          id='password'
-          name='password'
-          placeholder='Your password..'
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
-        {formik.errors.password && formik.touched.password && (
-          <p className='form-error-text'>{formik.errors.password}</p>
-        )}
+        <div className='input-container'>
+          <label htmlFor='email'>Email</label>
+          <input
+            type='email'
+            id='email'
+            name='email'
+            placeholder='Your email..'
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
+          {formik.errors.email && formik.touched.email && (
+            <p className='form-error-text'>{formik.errors.email}</p>
+          )}
+        </div>
 
+        <div className='input-container'>
+          <label htmlFor='password'>Password</label>
+          <input
+            type='password'
+            id='password'
+            name='password'
+            placeholder='Your password..'
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          {formik.errors.password && formik.touched.password && (
+            <p className='form-error-text'>{formik.errors.password}</p>
+          )}
+        </div>
         {isLoading ? (
           <div className=''>
-            <h1>Loading</h1>
+            <div class='lds-dual-ring'></div>
           </div>
         ) : (
           <button type='submit'>Login</button>
         )}
         {!isLoading ? (
-          <div className=' '>
+          <div className='toggle-text'>
             Don't have an account?{' '}
             <Link
-              className=' '
+              className='toggle-button'
               to='/register'
             >
               Register

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -26,6 +26,7 @@ const Register = () => {
         console.log(response);
         setIsLoading(false);
         setVerificationSent(true);
+        formik.resetForm();
       })
       .catch((error) => {
         if (error.response) {
@@ -87,66 +88,74 @@ const Register = () => {
         ) : (
           <></>
         )}
-        <label htmlFor='fullname'>Full Name</label>
-        <input
-          type='text'
-          id='fullname'
-          name='fullname'
-          placeholder='Your fullname..'
-          onChange={formik.handleChange}
-          value={formik.values.fullname}
-        />
-        {formik.errors.fullname && formik.touched.fullname && (
-          <p className='form-error-text'>{formik.errors.fullname}</p>
-        )}
-        <label htmlFor='email'>Email</label>
-        <input
-          type='email'
-          id='email'
-          name='email'
-          placeholder='Your email..'
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        {formik.errors.email && formik.touched.email && (
-          <p className='form-error-text'>{formik.errors.email}</p>
-        )}
-        <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          id='password'
-          name='password'
-          placeholder='Your password..'
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
-        {formik.errors.password && formik.touched.password && (
-          <p className='form-error-text'>{formik.errors.password}</p>
-        )}
-        <label htmlFor='password'>Retype Password</label>
-        <input
-          type='password'
-          id='retypePassword'
-          name='retypePassword'
-          placeholder='Your password..'
-          onChange={formik.handleChange}
-          value={formik.values.retypePassword}
-        />
-        {formik.errors.retypePassword && formik.touched.retypePassword && (
-          <p className='form-error-text'>{formik.errors.retypePassword}</p>
-        )}
+        <div className='input-container'>
+          <label htmlFor='fullname'>Full Name</label>
+          <input
+            type='text'
+            id='fullname'
+            name='fullname'
+            placeholder='Your fullname..'
+            onChange={formik.handleChange}
+            value={formik.values.fullname}
+          />
+          {formik.errors.fullname && formik.touched.fullname && (
+            <p className='form-error-text'>{formik.errors.fullname}</p>
+          )}
+        </div>
+        <div className='input-container'>
+          <label htmlFor='email'>Email</label>
+          <input
+            type='email'
+            id='email'
+            name='email'
+            placeholder='Your email..'
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
+          {formik.errors.email && formik.touched.email && (
+            <p className='form-error-text'>{formik.errors.email}</p>
+          )}
+        </div>
+        <div className='input-container'>
+          <label htmlFor='password'>Password</label>
+          <input
+            type='password'
+            id='password'
+            name='password'
+            placeholder='Your password..'
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          {formik.errors.password && formik.touched.password && (
+            <p className='form-error-text'>{formik.errors.password}</p>
+          )}
+        </div>
+        <div className='input-container'>
+          <label htmlFor='password'>Retype Password</label>
+          <input
+            type='password'
+            id='retypePassword'
+            name='retypePassword'
+            placeholder='Your password..'
+            onChange={formik.handleChange}
+            value={formik.values.retypePassword}
+          />
+          {formik.errors.retypePassword && formik.touched.retypePassword && (
+            <p className='form-error-text'>{formik.errors.retypePassword}</p>
+          )}
+        </div>
         {isLoading ? (
           <div className=''>
-            <h1>Loading</h1>
+            <div class='lds-dual-ring'></div>
           </div>
         ) : (
           <button type='submit'>Register</button>
         )}
         {!isLoading ? (
-          <div className=' '>
+          <div className='toggle-text'>
             Already have an account?{' '}
             <Link
-              className=' '
+              className='toggle-button'
               to='/login'
             >
               Login
